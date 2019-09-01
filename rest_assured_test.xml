@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="rest-assuredtest" thread-count="1" parallel="tests">
+<groups>
+
+</groups>
+    
+    <listeners>
+        
+    </listeners>
+    
+    <test name="basic feature test">
+        <classes>
+            <class name="BasicFeatureTest"/>
+            <class name="BeforeClassTest"/>
+            <class name="GroovyFeatures"/>
+        </classes>
+    </test>
+
+    <test name="set root and request data">
+        <classes>
+            <class name="SettingRootTest"/>
+            <class name="SetRequestDataTest"/>
+            <class name="SetRequestData2Test"/>
+        </classes>
+    </test>
+
+    <test name="test name">
+        <classes>
+            <class name="ResponseSpecBuilder"/>
+        </classes>
+    </test>
+
+    
+</suite>

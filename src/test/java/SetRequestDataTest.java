@@ -21,6 +21,7 @@ public class SetRequestDataTest {
         given()
                 .queryParam("A", "A val")
                 .queryParam("B", "B val")
+                .queryParam("c", "c value")
         .when()
                 .get("https://api.fonts.com/rest/json/Acounts/*")
         .then()
@@ -32,6 +33,7 @@ public class SetRequestDataTest {
         given()
                 .formParam("name1", "value1")
                 .formParam("name2", "value2")
+                .formParam("name3", "value3")
         .when()
                 .post("https://api.fonts.com/rest/json/Domains/")
         .then()
@@ -43,6 +45,7 @@ public class SetRequestDataTest {
         given()
                 .param("name1", "value1")
                 .param("name2", "value2")
+                .param("name3", "value3")
         .when()
                 .post("https://api.fonts.com/rest/json/Domains/")
         .then()
@@ -54,10 +57,9 @@ public class SetRequestDataTest {
         List<String> list = new ArrayList<String>();
         list.add("a");
         list.add("b");
+        list.add("c");
 
         given()
-                .param("a","b")
-                .param("f")
                 .param("C", list)
         .when()
                 .get("https://api.fonts.com/rest/json/Accounts/")

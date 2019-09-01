@@ -8,36 +8,45 @@ public class SettingRootTest {
     @Test
     public void testWithoutRoot() {
         given()
-                .get("http://services.groupkt.com/country/get/iso3code/ita").
+                .get("https://reqres.in/api/users/2").
         then()
-                .log().all()
-                .body("RestResponse.result.name", is("Italy"))
-                .body("RestResponse.result.alpha2_code", is("IT"))
-                .body("RestResponse.result.alpha3_code", is("ITA"));
+                .log().body()
+                .body("data.id", is(3))
+                .body("data.email", is("janet.weaver@reqres.in"))
+                .body("data.first_name", is("Janet"))
+                .body("data.last_name", is("Weaver"))
+                .body("data.avatar", is("https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"));
+
+
 
     }
 
     @Test
     public void testWithRoot() {
         given()
-                .get("http://services.groupkt.com/country/get/iso3code/ita").
+                .get("https://reqres.in/api/users/2").
         then()
-                .root("RestResponse.result")
-                .body("name", is("Italy"))
-                .body("alpha2_code", is("IT"))
-                .body("alpha3_code", is("ITA"));
+                .root("data")
+                .body("id", is(2))
+                .body("email", is("janet.weaver@reqres.in"))
+                .body("first_name", is("Janet"))
+                .body("last_name", is("Weaver"))
+                .body("avatar", is("https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"));
+
     }
 
     @Test
     public void detaichRoot() {
         given()
-                .get("http://services.groupkt.com/country/get/iso3code/ita").
+                .get("https://reqres.in/api/users/2").
         then()
-                .root("RestResponse.result")
-                .body("name", is("Italy"))
-                .body("alpha2_code", is("IT"))
-                .detachRoot("result")
-                .body("result.alpha3_code", is("ITA"));
+                .root("data")
+                .body("id", is(2))
+                .body("email", is("janet.weaver@reqres.in"))
+                .body("first_name", is("Janet"))
+                .detachRoot("data")
+                .body("data.last_name", is("Weaver"))
+                .body("data.avatar", is("https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"));
 
     }
 

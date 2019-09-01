@@ -14,18 +14,18 @@ public class ResponseSpecBuilder {
     @BeforeClass
     public void setUp() {
         responseSpecification = expect().statusCode(200)
-                .header("Content-Type", "application/json;charset=UTF-8");
+                .header("Content-Type", "text/html; charset=UTF-8");
 
 
         requestSpecification = given().contentType("application/json")
-                .basePath("")
-                .param("an","ds");
+                .basePath("photos");
+
     }
 
     @Test
     public void testResponse() {
         when()
-                .get("http://services.groupkt.com/country/search?text=india")
+                .get("http://jsonplaceholder.typicode.com")
         .then()
                 .spec(responseSpecification)
                 .time(lessThan(4000L));
@@ -36,7 +36,7 @@ public class ResponseSpecBuilder {
         given()
                 .spec(requestSpecification)
         .when()
-                .get("http://services.groupkt.com/country/search?text=india")
+                .get("http://jsonplaceholder.typicode.com")
                 .then()
                 .spec(responseSpecification)
                 .time(lessThan(4000L));

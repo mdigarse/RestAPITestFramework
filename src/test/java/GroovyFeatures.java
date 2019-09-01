@@ -13,19 +13,10 @@ public class GroovyFeatures {
     @Test
     public void testPresenceOfElement() {
         given().
-                get("http://services.groupkt.com/country/search?text=lands").
+                get("https://reqres.in/api/users?page=2").
         then().
-                body("RestResponse.result.name", hasItems("Cook Islands")).
+                body("data.email", hasItems("michael.lawson@reqres.in")).
                 log().all();
-
-    }
-
-    @Test
-    public void testLengthOfResponse() {
-        given().
-                get("http://services.groupkt.com/country/search?text=islands").
-                then().
-                body("RestResponse.result.alpha3_code*.length().sum()", greaterThan(10));
 
     }
 
@@ -33,18 +24,9 @@ public class GroovyFeatures {
     public void getResponseAsList() {
 
         String response =
-                when().get("http://services.groupkt.com/country/search?text=lands").asString();
-        List<String> ls = from(response).getList("RestResponse.result.name");
+                when().get("https://reqres.in/api/users?page=2").asString();
+        List<String> ls = from(response).getList("data.email");
         for(String st: ls)
             System.out.println(st);
-    }
-
-    @Test
-    public void testConditionOnList() {
-
-        String response =
-                when().get("http://services.groupkt.com/country/search?text=lands").asString();
-        List<String> ls = from(response).getList("RestResponse.result.findAll { it.name.length()>40}.name");
-
     }
 }

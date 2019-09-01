@@ -15,7 +15,7 @@ public class TestJsonPath {
                         .get("http://jsonplaceholder.typicode.com/photos")
                 .then()
                         .extract().asString();
-        List<String> list = from(responseAsString).get("id");
+        List<String> list = from(responseAsString).get("title");
             System.out.println(list.size());
     }
 
@@ -23,11 +23,11 @@ public class TestJsonPath {
     public void jsonPath2Test() {
         String responseAsString =
                 given().
-                        get("http://services.groupkt.com/country/get/all").
+                        get("http://jsonplaceholder.typicode.com/photos").
                         then().
                         extract().asString();
-        JsonPath jsonPath = new JsonPath(responseAsString).setRoot("RestResponse.result");
-        List<String> list = jsonPath.get("name");
+        JsonPath jsonPath = new JsonPath(responseAsString);
+        List<String> list = jsonPath.get("url");
         System.out.println(list.size());
     }
 }

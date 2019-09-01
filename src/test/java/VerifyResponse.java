@@ -20,10 +20,10 @@ public class VerifyResponse {
     @Test
     public void testHeaderInResponse() {
         given()
-                .get("http://services.groupkt.com/country/search?text=lands")
+                .get("https://reqres.in/api/users/2")
                 .then()
-                .assertThat().header("header name","expected value")
-                .assertThat().headers("Vary", "Accept-Encoding", "Content-Type", containsString("json"))
+                .log().all()
+                .assertThat().headers("Transfer-Encoding", "chunked", "Content-Type", containsString("json"))
                 .assertThat().contentType(ContentType.JSON);
 
     }

@@ -8,15 +8,26 @@ import static io.restassured.RestAssured.given;
 public class BeforeClassTest {
     @BeforeClass
     public void setUp() {
-        RestAssured.baseURI="http://services.groupkt.com";
-        RestAssured.basePath="country";
+        RestAssured.baseURI="http://jsonplaceholder.typicode.com";
+        RestAssured.basePath="photos";
+        System.out.println("setUp method executed");
     }
 
     @Test
     public void test1() {
         given()
-                .get("/get/iso2code/US")
+                .get("/2")
                 .then()
                 .statusCode(200);
+        System.out.println("Test1 executed");
+    }
+
+    @Test
+    public void test2() {
+        given()
+                .get("/3")
+                .then()
+                .statusCode(200);
+        System.out.println("Test2 executed");
     }
 }

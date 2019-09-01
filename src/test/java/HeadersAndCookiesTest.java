@@ -14,6 +14,7 @@ public class HeadersAndCookiesTest {
     @Test
     public void testResponseHeader() {
         Response response = get("http://jsonplaceholder.typicode.com/photos");
+       // System.out.print(response.headers());
 
         //To get single header
         String headerCFRAY = response.getHeader("CF-RAY");

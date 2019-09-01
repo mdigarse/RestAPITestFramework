@@ -15,13 +15,13 @@ public class timeMeasurementTest {
     @Test
     public void testResponseTimeInUnit() {
         long t = given().get("http://jsonplaceholder.typicode.com/photos/").timeIn(TimeUnit.SECONDS);
-        System.out.println("Time(MS): "+t);
+        System.out.println("Time(S): "+t);
     }
 
     @Test
     public void testResponseTimeAssersion() {
         given().get("http://jsonplaceholder.typicode.com/photos/")
                 .then()
-                .time(lessThan(5000L));
+                .time(lessThan(5L));
     }
 }

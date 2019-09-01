@@ -15,6 +15,7 @@ public class SetRequestData2Test {
                 .pathParam("section", "Domain")
         .when()
                 .post("https://api.fonts.com/rest/{type}/{section}/")
+                // "https://api.fonts.com/rest/type/Domain"
         .then()
                 .statusCode(400);
 

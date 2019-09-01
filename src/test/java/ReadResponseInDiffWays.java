@@ -13,20 +13,20 @@ public class ReadResponseInDiffWays {
 
     @Test
     public void testGetResponseAsString() {
-        String responseString = get("http://services.groupkt.com/country/search?text=lands").asString();
+        String responseString = get("http://jsonplaceholder.typicode.com/photos/2").asString();
         System.out.println(responseString);
     }
 
     @Test
     public void testGetResponseAsInputStream() throws IOException {
-        InputStream responseString = get("http://services.groupkt.com/country/search?text=lands").asInputStream();
+        InputStream responseString = get("http://jsonplaceholder.typicode.com/photos/2").asInputStream();
         System.out.println(responseString.toString().length());
         responseString.close();
     }
 
     @Test
     public void testGetResponseAsByteArray() {
-        byte[] byteArray = get("http://services.groupkt.com/country/search?text=lands").asByteArray();
+        byte[] byteArray = get("http://jsonplaceholder.typicode.com/photos").asByteArray();
         System.out.println(byteArray.length);
     }
 
@@ -34,20 +34,24 @@ public class ReadResponseInDiffWays {
     public void testExtractDetailUsingPath() {
         String href =
         when().
-               get("").
+               get("http://jsonplaceholder.typicode.com/photos/3").
         then().
                contentType(ContentType.JSON).
-               body("id", equalTo(1)).
+               body("id", equalTo(3)).
         extract().
                path("url");
-        when().get(href).then().statusCode(200);
+        System.out.print(href);
+        when()
+                .get(href)
+                .then()
+                .statusCode(200);
     }
 
     @Test
     public void testExtractDetailUsingResponse() {
         Response response=
                 when().
-                        get("").
+                        get("http://jsonplaceholder.typicode.com/photos/3").
                 then().
                         extract().response();
                 System.out.println(response.getStatusCode());
