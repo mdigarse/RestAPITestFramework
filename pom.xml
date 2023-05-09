@@ -11,7 +11,7 @@
     <properties>
         <jackson.version>2.9.8</jackson.version>
         <restassured.version>3.2.0</restassured.version>
-        <testng.version>6.14.3</testng.version>
+        <testng.version>7.5.1</testng.version>
         <json-schema-validator.version>3.0.2</json-schema-validator.version>
     </properties>
 
